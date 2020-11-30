@@ -1,4 +1,4 @@
-const Patients = require('../models/patients-model.js');
+const Followups = require('../models/followups-model.js');
 
 // Create and Save a new Students
 exports.create = (req, res) => {
@@ -9,65 +9,64 @@ exports.create = (req, res) => {
             message: "user department can not be empty"
         });
     }
-    if (!req.body.phoneNo) {
+    if (!req.body.patientList) {
         return res.status(400).send({
             message: "user batch can not be empty"
         });
     }
-    if (!req.body.pincode) {
+    if (!req.body.executiveId) {
         return res.status(400).send({
             message: "user contactNo can not be empty"
         });
     }
-    if (!req.body.streetName) {
+    if (!req.body.followupsDate) {
         return res.status(400).send({
             message: "user contactNo can not be empty"
         });
     }
-    if (!req.body.areaName) {
+    if (!req.body.maintainDistance) {
         return res.status(400).send({
             message: "user contactNo can not be empty"
         });
     }
-    if (!req.body.tesedOn) {
-        return res.status(400).send({
-            message: "user contactNo can not be empty"
-        });
-    } if (!req.body.resultsArrivedOn) {
-        return res.status(400).send({
-            message: "user contactNo can not be empty"
-        });
-    } if (!req.body.quarantineStartedOn) {
-        return res.status(400).send({
-            message: "user contactNo can not be empty"
-        });
-    } if (!req.body.curedOn) {
-        return res.status(400).send({
-            message: "user contactNo can not be empty"
-        });
-    } if (!req.body.underWentHospitalization) {
+    if (!req.body.takeMedicine) {
         return res.status(400).send({
             message: "user contactNo can not be empty"
         });
     }
+    if (!req.body.haveFever) {
+        return res.status(400).send({
+            message: "user contactNo can not be empty"
+        });
+    }
+    if (!req.body.haveCold) {
+        return res.status(400).send({
+            message: "user contactNo can not be empty"
+        });
+    }
+    if (!req.body.haveThoughtpain) {
+        return res.status(400).send({
+            message: "user contactNo can not be empty"
+        });
+    }
+
     // Create a Students
-    const patients = new Patients({
+    const followups = new Followups({
        
         name: req.body.name,
-        phoneNo: req.body.phoneNo,
-        pincode: req.body.pincode,
-        streetName: req.body.streetName,
-        areaName: req.body.areaName,
-        tesedOn: req.body.tesedOn, 
-        resultsArrivedOn: req.body.resultsArrivedOn,
-        quarantineStartedOn: req.body.quarantineStartedOn,
-        curedOn: req.body.curedOn,
-        underWentHospitalization: req.body.underWentHospitalization,
+        patientList:req.body.patientList,
+        executiveId: req.body.executiveId,
+        followupsDate: req.body.followupsDate,
+        maintainDistance: req.body.maintainDistance,
+        takeMedicine: req.body.takeMedicine,
+        haveFever: req.body.haveFever,
+        haveCold: req.body.haveCold,
+        haveThoughtpain: req.body.haveThoughtpain
     });
 
-    patients.patientsId= patients._id
+    followups.followupsId= followups._id
     // Save Students in the database
-    patients.save()
+    followups.save()
         .then(data => {           
             res.send(data);
         }).catch(err => {
