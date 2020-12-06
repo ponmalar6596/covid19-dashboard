@@ -50,3 +50,13 @@ exports.create = (req, res) => {
             });
         });
 };
+exports.findAll = (req, res) => {
+    User.find()
+        .then(value => {
+            res.send(value);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving students."
+            });
+        });
+};

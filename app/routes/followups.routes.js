@@ -1,6 +1,6 @@
 module.exports = (app) => {
-    const followups = require('../controllers/followups.controllers.js');
+    const Followups = require('../controllers/followups.controllers.js');
 
     // Create a new students
-    app.post('/followups', followups.create);
+    app.post('/followups', Followups.create);
 }
