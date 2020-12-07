@@ -4,15 +4,7 @@ let cors = require('cors')
 exports.create = (req, res) => {
     cors();
     // Validate request
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "X-Requested-With,content-type"
-    );
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "*");
-    res.setHeader("Access-Control-Allow-Headers", "*");
-
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    // console.log(req.body);
     if (!req.body.name) {
         return res.status(400).send({
             message: "user department can not be empty"
@@ -42,23 +34,39 @@ exports.create = (req, res) => {
         return res.status(400).send({
             message: "user contactNo can not be empty"
         });
-    } if (!req.body.resultsArrivedOn) {
-        return res.status(400).send({
-            message: "user contactNo can not be empty"
-        });
-    } if (!req.body.quarantineStartedOn) {
-        return res.status(400).send({
-            message: "user contactNo can not be empty"
-        });
-    } if (!req.body.curedOn) {
-        return res.status(400).send({
-            message: "user contactNo can not be empty"
-        });
-    } if (!req.body.underWentHospitalization) {
+    }
+    if (!req.body.status) {
         return res.status(400).send({
             message: "user contactNo can not be empty"
         });
     }
+    // } if (!req.body.resultsArrivedOn) {
+    //     return res.status(400).send({
+    //         message: "user contactNo can not be empty"
+    //     });
+    // } if (!req.body.quarantineStartedOn) {
+    //     return res.status(400).send({
+    //         message: "user contactNo can not be empty"
+    //     });
+    // } if (!req.body.curedOn) {
+    //     return res.status(400).send({
+    //         message: "user contactNo can not be empty"
+    //     });
+    // } if (!req.body.underWentHospitalization) {
+    //     return res.status(400).send({
+    //         message: "user contactNo can not be empty"
+    //     });
+     
+    
+     res.setHeader(
+        "Access-Control-Allow-Headers",
+        "X-Requested-With,content-type"
+    );
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+
+    res.setHeader("Access-Control-Allow-Credentials", true);
     // Create a Students
     const patients = new Patients({
        
@@ -68,6 +76,7 @@ exports.create = (req, res) => {
         streetName: req.body.streetName,
         areaName: req.body.areaName,
         tesedOn: req.body.tesedOn, 
+        status:req.body.status,
         resultsArrivedOn: req.body.resultsArrivedOn,
         quarantineStartedOn: req.body.quarantineStartedOn,
         curedOn: req.body.curedOn,
@@ -75,6 +84,7 @@ exports.create = (req, res) => {
     });
 
     patients.patientsId= patients._id
+    console.log(req.body);
     // Save Students in the database
     patients.save()
         .then(data => {           
@@ -83,8 +93,11 @@ exports.create = (req, res) => {
             res.status(500).send({
                 message: err.message || "Some error occurred while creating the user."
             });
+
         });
+        console.log(req.body);
 };
+
 exports.findAll = (req, res) => {
     console.log('hai');
     Patients.find()
@@ -120,6 +133,9 @@ exports.update = (req, res) => {
     }
     if (req.hasOwnProperty("tesedOn")) {
         patientDetails["tesedOn"] = req["tesedOn"];
+    }
+    if (req.hasOwnProperty("status")) {
+        patientDetails["status"] = req["status"];
     }
     if (req.hasOwnProperty("resultsArrivedOn")) {
         patientDetails["resultsArrivedOn"] = req["resultsArrivedOn"];

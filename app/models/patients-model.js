@@ -7,6 +7,7 @@ const PatientsSchema = mongoose.Schema({
     streetName: String,
     areaName: String,
     tesedOn: Date,
+    status: String,
     resultsArrivedOn: Date,
     quarantineStartedOn: Date,
     curedOn: Date,

@@ -6,7 +6,7 @@ const followupsSchema = mongoose.Schema([
     name: String,
     patientList:[{
         patientId:String,
-        // patientName:String
+        patientName:String
     },
 ],
     executiveId: String,
