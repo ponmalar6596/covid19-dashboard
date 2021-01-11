@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 // const ejs = require('ejs');
 // create express app
 const app = express();
+let cors = require('cors');
+app.use(cors());
 // app.set('view engine', 'ejs');
 // Configuring the databaseapp.use(bodyParser.json());
 app.use(bodyParser.json());

@@ -99,7 +99,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    console.log('hai');
+    // console.log('hai');
     Patients.find()
         .then(value => {
             res.send(value);
@@ -109,6 +109,20 @@ exports.findAll = (req, res) => {
             });
         });
 };
+
+exports.findOneById = (req, res) => {
+    console.log('req ',req.query);
+    Patients.findById(req.query.patientId)
+        .then(value => {
+            console.log("specific patient data ",value);
+            res.send(value);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving specific patient."
+            });
+        });
+};
+
 exports.update = (req, res) => {
     var id = req.params.patientsId;
     console.log(id);

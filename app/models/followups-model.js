@@ -3,19 +3,13 @@ const mongoose = require('mongoose');
 
 const followupsSchema = mongoose.Schema([
     {    
+    followupName: String,
     name: String,
-    patientList:[{
-        patientId:String,
-        patientName:String
-    },
-],
-    executiveId: String,
     followupsDate: Date,
-    maintainDistance: String,
+    maintainDistance: Boolean,
     takeMedicine: Boolean,
     haveFever: Boolean,
-    haveCold: Boolean,
-    haveThoughtpain: Boolean
+    haveCold: Boolean
 },
 //  {
 //     timestamps: true
